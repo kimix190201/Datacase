@@ -1,0 +1,16 @@
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\bin\Debug\net5.0\Datacase.exe
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\bin\Debug\net5.0\Datacase.deps.json
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\bin\Debug\net5.0\Datacase.runtimeconfig.json
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\bin\Debug\net5.0\Datacase.runtimeconfig.dev.json
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\bin\Debug\net5.0\Datacase.dll
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\bin\Debug\net5.0\ref\Datacase.dll
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\bin\Debug\net5.0\Datacase.pdb
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\Datacase.csproj.AssemblyReference.cache
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\Datacase.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\Datacase.AssemblyInfoInputs.cache
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\Datacase.AssemblyInfo.cs
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\Datacase.csproj.CoreCompileInputs.cache
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\Datacase.dll
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\ref\Datacase.dll
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\Datacase.pdb
+C:\Users\Koti\Documents\GitHub\Datacase\Datacase\Datacase\obj\Debug\net5.0\Datacase.genruntimeconfig.cache
