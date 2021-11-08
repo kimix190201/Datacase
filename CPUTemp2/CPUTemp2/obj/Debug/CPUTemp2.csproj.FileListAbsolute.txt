@@ -1,0 +1,7 @@
+C:\Users\shocklord\source\repos\CPUTemp2\CPUTemp2\bin\Debug\CPUTemp2.exe.config
+C:\Users\shocklord\source\repos\CPUTemp2\CPUTemp2\bin\Debug\CPUTemp2.exe
+C:\Users\shocklord\source\repos\CPUTemp2\CPUTemp2\bin\Debug\CPUTemp2.pdb
+C:\Users\shocklord\source\repos\CPUTemp2\CPUTemp2\obj\Debug\CPUTemp2.csproj.AssemblyReference.cache
+C:\Users\shocklord\source\repos\CPUTemp2\CPUTemp2\obj\Debug\CPUTemp2.csproj.CoreCompileInputs.cache
+C:\Users\shocklord\source\repos\CPUTemp2\CPUTemp2\obj\Debug\CPUTemp2.exe
+C:\Users\shocklord\source\repos\CPUTemp2\CPUTemp2\obj\Debug\CPUTemp2.pdb
