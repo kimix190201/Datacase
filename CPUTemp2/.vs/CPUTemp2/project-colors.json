@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "82524614-cbe0-42a3-9efc-a50d3a9fb6d4": {
+      "ProjectGuid": "82524614-cbe0-42a3-9efc-a50d3a9fb6d4",
+      "DisplayName": "CPUTemp2",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

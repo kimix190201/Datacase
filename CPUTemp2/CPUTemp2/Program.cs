@@ -4,49 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenHardwareMonitor.Hardware;
-namespace Get_CPU_Temp5
+using System.Data.SQLite;
+
+namespace CPUTemp2
 {
     class Program
     {
-        public class UpdateVisitor : IVisitor
+        static float cpuTemp;
+
+
+        // Instantiate the computer object to expose hardware (CPU) information
+        static Computer c = new Computer()
         {
-            public void VisitComputer(IComputer computer)
-            {
-                computer.Traverse(this);
-            }
-            public void VisitHardware(IHardware hardware)
-            {
-                hardware.Update();
-                foreach (IHardware subHardware in hardware.SubHardware) subHardware.Accept(this);
-            }
-            public void VisitSensor(ISensor sensor) { }
-            public void VisitParameter(IParameter parameter) { }
-        }
-        static void GetSystemInfo()
+            CPUEnabled = true
+        };
+
+        
+        static void ReportSystemInfo()
         {
-            UpdateVisitor updateVisitor = new UpdateVisitor();
-            Computer computer = new Computer();
-            computer.Open();
-            computer.CPUEnabled = true;
-            computer.Accept(updateVisitor);
-            for (int i = 0; i < computer.Hardware.Length; i++)
+            Database databaseObject = new Database();
+            string query = "INSERT INTO CPU ('temperature') VALUES (@temperature)";
+            SQLiteCommand command = new SQLiteCommand(query, databaseObject.connection);
+            databaseObject.OpenConnection();
+
+            foreach (var hardware in c.Hardware)
             {
-                if (computer.Hardware[i].HardwareType == HardwareType.CPU)
+                if (hardware.HardwareType == HardwareType.CPU)
                 {
-                    for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
+                    //
+                    hardware.Update();
+                    foreach (var sensor in hardware.Sensors)
                     {
-                        if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature)
-                            Console.WriteLine(computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
+                        // store
+                        cpuTemp = sensor.Value.GetValueOrDefault();
+                        System.Diagnostics.Debug.WriteLine(cpuTemp);
+                        command.Parameters.AddWithValue("@temperature", cpuTemp);
+                        var result = command.ExecuteNonQuery();
+                        
+                        Console.WriteLine("Rows added : {0}", result);
                     }
                 }
+                else
+                {
+                    databaseObject.CloseConnection();
+                }
             }
-            computer.Close();
         }
+
         static void Main(string[] args)
         {
+            c.Open();
+
+            //loop to report exposed information
             while (true)
             {
-                GetSystemInfo();
+                ReportSystemInfo();
             }
         }
     }
