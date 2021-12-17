@@ -32,7 +32,6 @@ namespace CPUTemp2
             }
             public void VisitSensor(ISensor sensor) { }
             public void VisitParameter(IParameter parameter) { }
-
         }
 
         static void ReportSystemInfo()
@@ -55,14 +54,19 @@ namespace CPUTemp2
 
                             // Timestamps
                             string dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                            Int32 unixTimestamp = (Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                            //Int32 unixTimestamp = (Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+                            // User
+                            string u = System.Environment.UserName;
+                            string m = System.Environment.MachineName;
 
                             MySqlCommand command = new MySqlCommand();
                             command.Connection = databaseObject.connection;
-                            command.CommandText = "INSERT INTO CPU (temperature,time,unixtime) VALUES(@temperature,@time,@unixtime)";
+                            command.CommandText = "INSERT INTO CPU (temperature,time,user) VALUES(@temperature,@time,@user)";
                             command.Parameters.AddWithValue("@temperature", cpuTemp);
                             command.Parameters.AddWithValue("@time", dt);
-                            command.Parameters.AddWithValue("@unixtime", unixTimestamp);
+                            //command.Parameters.AddWithValue("@unixtime", unixTimestamp);
+                            command.Parameters.AddWithValue("@user", u + "_" + m);
 
                             var result = command.ExecuteNonQuery();
                             Console.WriteLine("Rows added : {0}", result);
