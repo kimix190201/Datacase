@@ -5,21 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
+using MySql.Data.MySqlClient;
 
 namespace CPUTemp2
 {
     public class Database
     {
-        public SQLiteConnection connection;
+        public MySqlConnection connection;
         public Database()
         {
-            connection = new SQLiteConnection("Data Source=Datacase.db");
-
-            if (!File.Exists("./Datacase.db"))
-            {
-                SQLiteConnection.CreateFile("Datacase.db");
-                Console.WriteLine("Database file created");
-            }
+            string connStr = "server=109.204.232.139;user=datacase;database=datacase;port=3306;password=SQLvaliLite2021";
+            connection = new MySqlConnection(connStr);
         }
 
         public void OpenConnection()
@@ -29,10 +25,10 @@ namespace CPUTemp2
                 connection.Open();
             }
         }
-        
+
         public void CloseConnection()
         {
-            connection.Close(); 
+            connection.Close();
         }
     }
 }

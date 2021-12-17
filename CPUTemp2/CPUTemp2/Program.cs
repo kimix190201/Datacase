@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenHardwareMonitor.Hardware;
 using System.Data.SQLite;
+using MySql.Data.MySqlClient;
 
 namespace CPUTemp2
 {
@@ -17,8 +18,6 @@ namespace CPUTemp2
         {
             CPUEnabled = true
         };
-
-
         
         public class UpdateVisitor : IVisitor
         {
@@ -40,8 +39,6 @@ namespace CPUTemp2
         {
             UpdateVisitor updateVisitor = new UpdateVisitor();
             Database databaseObject = new Database();
-            string query = "INSERT INTO CPU ('temperature') VALUES (@temperature)";
-            SQLiteCommand command = new SQLiteCommand(query, databaseObject.connection);
             databaseObject.OpenConnection();
             c.Accept(updateVisitor);
 
@@ -55,7 +52,18 @@ namespace CPUTemp2
                         {
                             cpuTemp = c.Hardware[Convert.ToInt32(i)].Sensors[Convert.ToInt32(j)].Value.GetValueOrDefault();
                             System.Diagnostics.Debug.WriteLine(cpuTemp);
+
+                            // Timestamps
+                            string dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                            Int32 unixTimestamp = (Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+                            MySqlCommand command = new MySqlCommand();
+                            command.Connection = databaseObject.connection;
+                            command.CommandText = "INSERT INTO CPU (temperature,time,unixtime) VALUES(@temperature,@time,@unixtime)";
                             command.Parameters.AddWithValue("@temperature", cpuTemp);
+                            command.Parameters.AddWithValue("@time", dt);
+                            command.Parameters.AddWithValue("@unixtime", unixTimestamp);
+
                             var result = command.ExecuteNonQuery();
                             Console.WriteLine("Rows added : {0}", result);
                         }
@@ -67,8 +75,6 @@ namespace CPUTemp2
                 }
             }
 
-            //
-           
         }
 
         static void Main(string[] args)
