@@ -36,6 +36,10 @@ namespace CPUTemp2
 
         static void ReportSystemInfo()
         {
+            // User
+            string u = System.Environment.UserName;
+            string m = System.Environment.MachineName;
+
             UpdateVisitor updateVisitor = new UpdateVisitor();
             Database databaseObject = new Database();
             databaseObject.OpenConnection();
@@ -54,22 +58,16 @@ namespace CPUTemp2
 
                             // Timestamps
                             string dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                            Int32 unixTimestamp = (Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-
-                            // User
-                            string u = System.Environment.UserName;
-                            string m = System.Environment.MachineName;
 
                             MySqlCommand command = new MySqlCommand();
                             command.Connection = databaseObject.connection;
-                            command.CommandText = "INSERT INTO CPU (temperature,time,user,unixtime) VALUES(@temperature,@time,@user,@unixtime)";
+                            command.CommandText = "INSERT INTO CPU (temperature,timestamp,user) VALUES(@temperature,@timestamp,@user)";
                             command.Parameters.AddWithValue("@temperature", cpuTemp);
-                            command.Parameters.AddWithValue("@time", dt);
-                            command.Parameters.AddWithValue("@unixtime", unixTimestamp);
+                            command.Parameters.AddWithValue("@timestamp", dt);
                             command.Parameters.AddWithValue("@user", u + "_" + m);
 
                             var result = command.ExecuteNonQuery();
-                            Console.WriteLine("Rows added : {0}", result);
+                            System.Threading.Thread.Sleep(1000);
                         }
                     }
                 }
