@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenHardwareMonitor.Hardware;
-using System.Data.SQLite;
 using MySql.Data.MySqlClient;
 
 namespace CPUTemp2
