@@ -1,7 +1,5 @@
 # CPU-temperature-
 
-This app simply gets your computers cpu temperature and prints it in console. 
+This app simply gets your computers cpu temperature and prints it out as a graph on a web server.
 
- uses openhardwaremonitorlib.dll
- requires admin rights
  
